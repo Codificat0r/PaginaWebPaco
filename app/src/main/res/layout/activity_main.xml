@@ -14,5 +14,5 @@
         android:id="@+id/btnExplorador"
         android:layout_width="64dp"
         android:layout_height="wrap_content"
-        android:text="Ir" />
+        android:text="@string/btnExplorador" />
 </LinearLayout>

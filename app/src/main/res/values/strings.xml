@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PaginaWeb</string>
+    <string name="btnExplorador">Ir</string>
 </resources>
