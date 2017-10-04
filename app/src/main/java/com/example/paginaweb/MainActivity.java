@@ -6,8 +6,10 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.URLUtil;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -27,10 +29,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        String url = edtUrl.getText().toString();
         if (v == btnExplorador) {
-            Uri uri = Uri.parse(edtUrl.getText().toString());
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
+            if (URLUtil.isValidUrl(url) && (URLUtil.isHttpsUrl(url) || URLUtil.isHttpUrl(url))) {
+                Intent intent = new Intent(this, VisorWeb.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("url", edtUrl.getText().toString());
+                intent.putExtras(bundle);
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, "La URL no es correcta.", Toast.LENGTH_LONG).show();
+            }
         }
     }
 }
